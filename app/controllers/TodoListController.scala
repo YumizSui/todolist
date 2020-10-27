@@ -17,4 +17,12 @@ class TodoListController @Inject()(cc: ControllerComponents) extends AbstractCon
     Ok(views.html.index("Welcome to Play application!"))
   }
 
+  def hello = Action { implicit request =>
+    Ok("Hello world!")
+  }
+
+  def hello_name(name: String) = Action { implicit request =>
+    // 200 OK ステータスで app/views/index.scala.html をレンダリングする
+    Ok(s"Hello world, $name!")
+  }
 }

@@ -1,6 +1,9 @@
 # TodoList
 GET     /                           controllers.TodoListController.index
 
+GET     /hello                          controllers.TodoListController.hello
+GET     /hello/:name                    controllers.TodoListController.hello_name(name:String)
+
 # Formapp
 ## Normal
 GET     /formapp/messages           controllers.formapp.FormappController.list
