@@ -1,0 +1,26 @@
+@*
+ * メイン テンプレート
+ * - ページタイトル，HTMLの構造を呼び出し元から受け取り，ページ全体をレンダリングする
+ *@
+
+@* ページタイトル，ページ本体のHTML構造を引数として受け取る *@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>@title</title>  @* "@変数名" の形式で変数へアクセスできる *@
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/style.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav></nav>
+    <main class="main-content" role="main">
+        @content
+    </main>
+    <footer></footer>
+    <script src="@routes.Assets.versioned("javascripts/script.js")" type="text/javascript"></script>
+</body>
+</html>

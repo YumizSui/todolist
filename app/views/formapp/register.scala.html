@@ -1,0 +1,11 @@
+@(title: String, target: String)(content: Html)
+
+@views.html.formapp.main(title) {
+    <h3>新規登録</h3>
+    <h4>@title</h4>
+    <form action="@target" method="POST">
+        @content
+        <input type="submit" value="next">
+    </form>
+
+}

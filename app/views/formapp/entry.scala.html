@@ -1,0 +1,27 @@
+@(entry: models.formapp.Enquete)
+
+@views.html.formapp.main("登録済みメッセージ") {
+    <table class="w3-table">
+        <tr>
+            <th>ID</th>
+            <td>@entry.id</td>
+        </tr>
+        <tr>
+            <th>氏名</th>
+            <td>@entry.name</td>
+        </tr>
+        <tr>
+            <th>性別</th>
+            <td>@entry.gender</td>
+        </tr>
+        <tr>
+            <th>投稿日時</th>
+            <td>@entry.createdAt</td>
+        </tr>
+        <tr>
+            <th>メッセージ</th>
+            <td><textarea disabled>@entry.message</textarea></td>
+        </tr>
+    </table>
+    <a href="/formapp/messages">戻る</a>
+}

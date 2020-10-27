@@ -1,0 +1,10 @@
+@(implicit request: RequestHeader)
+
+@import helper._
+
+@message = @{request.session.get("formapp::message").getOrElse("")}
+
+@register("メッセージ入力", "/formapp/register/message") {
+    @CSRF.formField
+    <textarea name="message">@message</textarea>
+}

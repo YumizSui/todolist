@@ -1,0 +1,11 @@
+@(implicit request: RequestHeader)
+
+@import helper._
+
+@gender = @{request.session.get("formapp::gender").getOrElse("")}
+
+@register("性別入力", "/formapp/register/gender") {
+    @CSRF.formField
+    <input type="radio" name="gender" value="male" @if(gender == "male"){ checked } required>男性</input>
+    <input type="radio" name="gender" value="female" @if(gender == "female"){ checked } required>女性</input>
+}

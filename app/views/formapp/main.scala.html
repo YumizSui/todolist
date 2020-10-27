@@ -1,0 +1,22 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>@if(title.nonEmpty){ @title | }Formapp</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/formapp.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="w3-content">
+        <main class="main-content w3-container" role="main">
+            <h1>Formapp on Play Framework</h1>
+            @content
+        </main>
+    </div>
+    <script src="@routes.Assets.versioned("javascripts/formapp.js")" type="text/javascript"></script>
+</body>
+</html>

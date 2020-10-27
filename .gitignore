@@ -1,0 +1,8 @@
+# SBT
+target/
+
+# IDEA
+.idea/
+
+# PlayFramework
+logs/

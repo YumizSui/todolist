@@ -1,0 +1,18 @@
+# TodoList
+GET     /                           controllers.TodoListController.index
+
+# Formapp
+## Normal
+GET     /formapp/messages           controllers.formapp.FormappController.list
+GET     /formapp/messages/:id       controllers.formapp.FormappController.entry(id: Int)
+GET     /formapp/register           controllers.formapp.FormappController.startRegistration
+POST    /formapp/register/name      controllers.formapp.FormappController.registerName
+POST    /formapp/register/gender    controllers.formapp.FormappController.registerGender
+POST    /formapp/register/message   controllers.formapp.FormappController.registerMessage
+POST    /formapp/register/confirm   controllers.formapp.FormappController.confirm
+GET     /formapp                    controllers.Default.redirect(to = "/formapp/messages")
+
+# Resources
+GET     /robot.txt                  controllers.Default.notFound
+GET     /favicon.ico                controllers.Assets.at(path="/public/images", file="favicon.png")
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,38 @@
+@(enquetes: Seq[models.formapp.Enquete])
+
+@import helper._
+
+@entryRow(entry: models.formapp.Enquete) = {
+    <tr id="@entry.id">
+        <td><a href="/formapp/messages/@entry.id">@entry.id</a></td>
+        <td class="name">@entry.name</td>
+        <td class="gender">@entry.gender</td>
+        <td class="date">@entry.createdAt</td>
+    </tr>
+}
+
+@views.html.formapp.main("") {
+    <div class="w3-row">
+        <div class="w3-half">
+            <h3>登録済みメッセージ</h3>
+        </div>
+        <div class="w3-right">
+            <a href="/formapp/register"><span class="w3-button w3-green">新規入力</span></a>
+        </div>
+    </div>
+    @if(enquetes.nonEmpty) {
+    <table id="formapp-message-list" class="w3-table w3-striped w3-border">
+        <tr>
+            <th></th>
+            <th>投稿者</th>
+            <th>性別</th>
+            <th>投稿日時</th>
+        </tr>
+        @for(entry <- enquetes) {
+            @entryRow(entry)
+        }
+    </table>
+    } else {
+    <p>登録されたメッセージはありません</p>
+    }
+}

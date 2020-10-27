@@ -1,0 +1,13 @@
+@*
+ * インデックスページ
+ * - controllers.HomeController.index から呼び出される
+ * - 引数としてメッセージを受け取り，画面に表示する
+ *@
+
+@* 引数としてメッセージを受け取る *@
+@(message: String)
+
+@main("Home") {
+    <h1>@message</h1>
+    <a href="/formapp/messages">前半課題 formapp の Play による実装</a>
+}
