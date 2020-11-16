@@ -5,9 +5,18 @@
  *@
 
 @* 引数としてメッセージを受け取る *@
-@(message: String)
+@(message: String)(implicit request: RequestHeader)
 
-@main("Home") {
+@import helper._
+@user = @{request.session.get("user::username").getOrElse("")}
+
+@main("Home", user) {
     <h1>@message</h1>
-    <a href="/formapp/messages">前半課題 formapp の Play による実装</a>
+    <div>
+        <a href="/formapp/messages">前半課題 formapp の Play による実装</a>
+    </div>
+    <div>
+        <a href="/tasks">後半課題ToDoのリスト</a>
+    </div>
+
 }

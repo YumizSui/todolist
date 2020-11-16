@@ -1,5 +1,36 @@
 # TodoList
-GET     /                           controllers.TodoListController.index
+GET     /                    controllers.TodoListController.index
+GET     /tasks          controllers.TodoListController.list
+GET     /tasks/:id     controllers.TodoListController.entry(id: Int)
+
+GET     /tasks/:id/complete     controllers.TodoListController.startComplete(id: Int)
+POST     /tasks/:id/complete     controllers.TodoListController.complete(id: Int)
+
+GET     /tasks/:id/update     controllers.TodoListController.startUpdate(id: Int)
+POST     /tasks/:id/update     controllers.TodoListController.update(id: Int)
+
+GET     /tasks/:id/delete     controllers.TodoListController.startDeletion(id: Int)
+POST     /tasks/:id/delete     controllers.TodoListController.deletion(id: Int)
+
+GET     /register    controllers.TodoListController.startRegistration
+POST    /register/title      controllers.TodoListController.registerTitle
+POST    /register/description      controllers.TodoListController.registerDescription
+POST    /register/confirm   controllers.TodoListController.confirm
+
+
+GET     /login    controllers.TodoListController.startLogin
+POST    /login      controllers.TodoListController.login
+
+GET     /signup    controllers.TodoListController.startSignup
+POST    /signup      controllers.TodoListController.signup
+
+GET     /settings    controllers.TodoListController.startSetting
+GET    /settings/newPassword      controllers.TodoListController.startNewPassword
+POST    /settings/newPassword      controllers.TodoListController.newPassword
+GET    /settings/removeUser      controllers.TodoListController.startRemoveUser
+POST    /settings/removeUser      controllers.TodoListController.removeUser
+
+GET     /logout    controllers.TodoListController.logout
 
 GET     /hello                          controllers.TodoListController.hello
 GET     /hello/:name                    controllers.TodoListController.hello_name(name:String)

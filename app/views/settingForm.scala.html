@@ -1,0 +1,21 @@
+@(implicit request: RequestHeader)
+
+@import helper._
+@user = @{request.session.get("user::username").getOrElse("")}
+@views.html.main("設定画面", user) {
+<div >
+    <h3>管理画面</h3>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>
+                <a href="/settings/newPassword"><span class="w3-button w3-blue">パスワード変更</span></a>
+            </th>
+            <th>
+                <a href="/settings/removeUser"><span class="w3-button w3-red">退会</span></a>
+            </th>
+        </tr>
+    </table>
+</div>
+}

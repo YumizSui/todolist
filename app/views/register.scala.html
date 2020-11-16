@@ -1,0 +1,11 @@
+@(title: String, target: String, user: String="")(content: Html)
+
+@views.html.main(title, user) {
+    <h3>新規登録</h3>
+    <h4>@title</h4>
+    <form action="@target" method="POST">
+        @content
+        <input type="submit" value="next" class="w3-button w3-green">
+    </form>
+
+}

@@ -1,0 +1,26 @@
+@(entry: models.Task)(implicit request: RequestHeader)
+
+@import helper._
+
+@user = @{request.session.get("user::username").getOrElse("")}
+
+@views.html.main("編集画面", user) {
+<form action="/tasks/@entry.id/update" method="POST">
+    @CSRF.formField
+    <dl>
+        <dt>タイトル</dt>
+        <dd>
+            <input type="text" name="title" value="@entry.title">
+        </dd>
+        <dt>説明</dt>
+        <dd>
+            <textarea name="description">@entry.description</textarea>
+        </dd>
+        <dt>登録時刻</dt>
+        <dd>@entry.createdAt</dd>
+    </dl>
+    <p>以上の内容で更新します</p>
+    <input type="submit" value="更新" class="w3-button w3-green">
+</form>
+}
+

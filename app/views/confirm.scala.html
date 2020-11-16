@@ -1,0 +1,18 @@
+@(task: models.Task)(implicit request: RequestHeader)
+
+@import helper._
+@user = @{request.session.get("user::username").getOrElse("")}
+
+@views.html.main("確認画面", user) {
+    <dl>
+        <dt>タイトル</dt>
+        <dd>@task.title</dd>
+        <dt>説明</dt>
+        <dd>@task.description</dd>
+    </dl>
+    <p>以上の内容で登録します</p>
+    <form action="/register/confirm" method="POST">
+        @CSRF.formField
+        <input type="submit" value="OK" class="w3-button w3-green">
+    </form>
+}

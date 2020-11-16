@@ -1,9 +1,13 @@
 val projectConfig =
-    com.typesafe.config.ConfigFactory.parseFile(new File("conf/application.conf"))
+  com.typesafe.config.ConfigFactory.parseFile(new File("conf/application.conf"))
 
 name := projectConfig.getString("app.name")
 version := projectConfig.getString("app.version")
 scalaVersion := "2.13.3"
+scalacOptions ++= Seq("-encoding", "UTF-8")
+
+javacOptions ++= Seq("-encoding", "UTF-8")
+javaOptions ++= Seq("--illegal-access", "deny")
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 

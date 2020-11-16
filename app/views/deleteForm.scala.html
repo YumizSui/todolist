@@ -1,0 +1,20 @@
+@(entry: models.Task)(implicit request: RequestHeader)
+
+@import helper._
+
+@user = @{request.session.get("user::username").getOrElse("")}
+@views.html.main("確認画面", user) {
+<dl>
+    <dt>タイトル</dt>
+    <dd>@entry.title</dd>
+    <dt>説明</dt>
+    <dd>@entry.description</dd>
+    <dt>登録時刻</dt>
+    <dd>@entry.createdAt</dd>
+</dl>
+<p>以上の内容を削除します</p>
+<form action="/tasks/@entry.id/delete" method="POST">
+    @CSRF.formField
+    <input type="submit" value="削除" class="w3-button w3-red">
+</form>
+}

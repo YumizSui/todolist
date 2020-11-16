@@ -1,0 +1,60 @@
+@(tasks: Seq[models.Task])(implicit request: RequestHeader)
+
+@import helper._
+
+@user = @{request.session.get("user::username").getOrElse("")}
+
+@entryRow(entry: models.Task) = {
+    <tr id="@entry.id">
+        <td><a href="/tasks/@entry.id">@entry.id</a></td>
+        <td class="title">@entry.title</td>
+        <td class="description">@entry.description</td>
+        <td class="date">@entry.createdAt</td>
+        <td>
+            <form action="/tasks/@entry.id/complete" method="GET">
+                <input type="submit" value="完了"  class="w3-button w3-green">
+            </form>
+        </td>
+        <td>
+            <form action="/tasks/@entry.id/update" method="GET">
+                <input type="submit" value="編集"  class="w3-button w3-blue">
+            </form>
+        </td>
+        <td>
+            <form action="/tasks/@entry.id/delete" method="GET">
+                <input type="submit" value="削除"  class="w3-button w3-red">
+            </form>
+        </td>
+    </tr>
+}
+
+@views.html.main("タスクリスト", user) {
+    <div class="w3-row">
+        <div class="w3-half">
+            <h3>登録済みタスク</h3>
+        </div>
+        <div class="w3-right">
+            <a href="/register"><span class="w3-button w3-green">新規タスク</span></a>
+        </div>
+    </div>
+    @if(tasks.nonEmpty) {
+    <table id="task-list" class="w3-table w3-striped w3-border">
+        <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>説明</th>
+            <th>投稿日時</th>
+            <th>完了</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+        @for(entry <- tasks) {
+            @if(!entry.isDone){
+                @entryRow(entry)
+            }
+        }
+    </table>
+    } else {
+    <p>登録されたタスクはありません</p>
+    }
+}

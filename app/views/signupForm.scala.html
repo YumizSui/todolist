@@ -1,0 +1,23 @@
+@(implicit request: RequestHeader)
+
+@import helper._
+
+@user = @{request.session.get("user::username").getOrElse("")}
+
+@views.html.main("ユーザー登録画面", user) {
+<form action="/signup" method="POST">
+    @CSRF.formField
+    <dl>
+        <dt>ユーザーネーム</dt>
+        <dd>
+            <input type="text" name="username">
+        </dd>
+        <dt>パスワード</dt>
+        <dd>
+            <input type="password" name="password">
+        </dd>
+    </dl>
+    <p>以上の内容でユーザー登録します</p>
+    <input type="submit" value="登録" class="w3-button w3-green">
+</form>
+}

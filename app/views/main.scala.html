@@ -4,19 +4,46 @@
  *@
 
 @* ページタイトル，ページ本体のHTML構造を引数として受け取る *@
-@(title: String)(content: Html)
+@(title: String, user: String="")(content: Html)
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>@title</title>  @* "@変数名" の形式で変数へアクセスできる *@
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/style.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav></nav>
+    <header>
+        <div class="header">
+            <table>
+                <tr>
+                    <th>
+                        <a href="/tasks"><span class="w3-button w3-green">Home</span></a>
+                    </th>
+                        @if(user!=""){
+                           <th>
+                               <a href="/settings"><span class="w3-button w3-blue"> @user さん</span></a>
+                            </th>
+                            <th>
+                                <a href="/logout"><span class="w3-button w3-red">logout</span></a>
+                            </th>
+                        } else {
+                            <th>
+                                <a href="/signup"><span class="w3-button w3-blue">Signup</span></a>
+                            </th>
+                            <th>
+                                    <a href="/login"><span class="w3-button w3-blue">Login</span></a>
+                            </th>
+                        }
+                </tr>
+            </table>
+        </div>
+    </header>
     <main class="main-content" role="main">
         @content
     </main>
