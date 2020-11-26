@@ -7,6 +7,7 @@
 @views.html.main("ユーザー登録画面", user) {
 <form action="/signup" method="POST">
     @CSRF.formField
+    <h3>ユーザー登録</h3>
     <dl>
         <dt>ユーザーネーム</dt>
         <dd>
@@ -15,6 +16,10 @@
         <dt>パスワード</dt>
         <dd>
             <input type="password" name="password">
+        </dd>
+        <dt>パスワード（確認）</dt>
+        <dd>
+            <input type="password" name="password_check">
         </dd>
     </dl>
     <p>以上の内容でユーザー登録します</p>

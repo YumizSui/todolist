@@ -5,6 +5,7 @@
 @views.html.main("ログイン画面", user) {
 <form action="/login" method="POST">
     @CSRF.formField
+    <h3>ログイン</h3>
     <dl>
         <dt>ユーザーネーム</dt>
         <dd>

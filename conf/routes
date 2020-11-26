@@ -1,35 +1,44 @@
 # TodoList
 GET     /                    controllers.TodoListController.index
+
+## タスク関連の処理
 GET     /tasks          controllers.TodoListController.list
 GET     /tasks/:id     controllers.TodoListController.entry(id: Int)
-
-GET     /tasks/:id/complete     controllers.TodoListController.startComplete(id: Int)
-POST     /tasks/:id/complete     controllers.TodoListController.complete(id: Int)
-
-GET     /tasks/:id/update     controllers.TodoListController.startUpdate(id: Int)
-POST     /tasks/:id/update     controllers.TodoListController.update(id: Int)
-
-GET     /tasks/:id/delete     controllers.TodoListController.startDeletion(id: Int)
-POST     /tasks/:id/delete     controllers.TodoListController.deletion(id: Int)
-
+### タスクの作成
 GET     /register    controllers.TodoListController.startRegistration
 POST    /register/title      controllers.TodoListController.registerTitle
 POST    /register/description      controllers.TodoListController.registerDescription
 POST    /register/confirm   controllers.TodoListController.confirm
 
+### タスクの完了
+GET     /tasks/:id/complete     controllers.TodoListController.startComplete(id: Int)
+POST     /tasks/:id/complete     controllers.TodoListController.complete(id: Int)
 
+### タスクの変更
+GET     /tasks/:id/update     controllers.TodoListController.startUpdate(id: Int)
+POST     /tasks/:id/update     controllers.TodoListController.update(id: Int)
+
+### タスクの削除
+GET     /tasks/:id/delete     controllers.TodoListController.startDeletion(id: Int)
+POST     /tasks/:id/delete     controllers.TodoListController.deletion(id: Int)
+
+## アカウントに関する処理
+### ログイン
 GET     /login    controllers.TodoListController.startLogin
 POST    /login      controllers.TodoListController.login
 
+### アカウントを登録
 GET     /signup    controllers.TodoListController.startSignup
 POST    /signup      controllers.TodoListController.signup
 
+### アカウント設定
 GET     /settings    controllers.TodoListController.startSetting
 GET    /settings/newPassword      controllers.TodoListController.startNewPassword
 POST    /settings/newPassword      controllers.TodoListController.newPassword
 GET    /settings/removeUser      controllers.TodoListController.startRemoveUser
 POST    /settings/removeUser      controllers.TodoListController.removeUser
 
+### ログアウト
 GET     /logout    controllers.TodoListController.logout
 
 GET     /hello                          controllers.TodoListController.hello

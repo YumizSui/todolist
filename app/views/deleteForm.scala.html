@@ -3,7 +3,8 @@
 @import helper._
 
 @user = @{request.session.get("user::username").getOrElse("")}
-@views.html.main("確認画面", user) {
+@views.html.main("削除確認画面", user) {
+<h3>削除確認</h3>
 <dl>
     <dt>タイトル</dt>
     <dd>@entry.title</dd>

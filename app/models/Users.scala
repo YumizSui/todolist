@@ -2,7 +2,7 @@ package models
 
 import javax.inject.{Inject, Singleton}
 import play.api.db.slick.{DatabaseConfigProvider => DBConfigProvider}
-
+import scala.concurrent.Future
 import scala.concurrent.ExecutionContext
 
 /**
@@ -24,24 +24,28 @@ class Users @Inject()(dbcp: DBConfigProvider)(implicit ec: ExecutionContext) ext
   def list: Seq[User] = Await.result(
     db.run(sql"SELECT username, password FROM #$table".as[User])
   )
-  def findByUsername(username: String): Option[User] = Await.result(
-    db.run(sql"SELECT username, password FROM #$table WHERE username='#$username'".as[User].headOption)
+  def findByUsername(username: Option[String]): Option[User] = Await.result(
+    username match {
+      case Some(username) =>
+        db.run(sql"SELECT username, password FROM #$table WHERE username=$username".as[User].headOption)
+      case None => Future[Option[User]] { None }
+    }
   )
 
   def save(user: User): Int = {
     Await.result(
-      db.run(sqlu"INSERT INTO #$table (username, password) VALUES ('#${user.username}', '#${user.password}')")
+      db.run(sqlu"INSERT INTO #$table (username, password) VALUES (${user.username}, ${user.password})")
     )
   }
 
-  def delete(username: String) = {
+  def delete(username: String): Int = {
     Await.result(
-      db.run(sqlu"DELETE FROM #$table WHERE username = '#$username'")
+      db.run(sqlu"DELETE FROM #$table WHERE username = $username")
     )
   }
   def updatePassword(user: User): Int = {
     Await.result(
-      db.run(sqlu"UPDATE #$table SET password='#${user.password}' WHERE username = '#${user.username}'")
+      db.run(sqlu"UPDATE #$table SET password=${user.password} WHERE username = ${user.username}")
     )
   }
 }

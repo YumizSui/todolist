@@ -26,6 +26,7 @@
                         <a href="/tasks"><span class="w3-button w3-green">Home</span></a>
                     </th>
                         @if(user!=""){
+                            @*// ログイン時は設定/ログアウトボタンを表示 *@
                            <th>
                                <a href="/settings"><span class="w3-button w3-blue"> @user さん</span></a>
                             </th>
@@ -33,6 +34,7 @@
                                 <a href="/logout"><span class="w3-button w3-red">logout</span></a>
                             </th>
                         } else {
+                            @*// ログインしていない時はログイン/サインアップボタンを表示 *@
                             <th>
                                 <a href="/signup"><span class="w3-button w3-blue">Signup</span></a>
                             </th>

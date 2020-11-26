@@ -5,6 +5,7 @@
 @views.html.main("退会確認画面", user) {
 <form action="/settings/removeUser" method="POST">
     @CSRF.formField
+    <h3>退会確認</h3>
     <p>@user さん、退会しますか？</p>
     <input type="submit" value="退会" class="w3-button w3-red">
 </form>

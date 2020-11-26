@@ -7,6 +7,7 @@
 @views.html.main("編集画面", user) {
 <form action="/tasks/@entry.id/update" method="POST">
     @CSRF.formField
+    <h3>編集</h3>
     <dl>
         <dt>タイトル</dt>
         <dd>
